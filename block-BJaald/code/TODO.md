@@ -1,0 +1,225 @@
+## Queue
+
+- Linear data structure
+- Flexible size
+- First in Last out (LIFO)
+
+### Implement Queue using Array
+
+Create a class named `Queue` with the following properties and methods:
+
+- While implementing this you can use Array to store data and use any array methods.
+- Test the `Queue` class using `Test 1` and `Test 2` given below
+
+The class `Queue` will accept one optional parameter `capacity` using which we can limit the data size. The value of `capacity` will default to `Infinity`.
+
+Properties:
+
+- `storage` use it to store the data for the queue. It should be an array
+- `capacity` defaults to `Infinity` if the length is above capacity the item can't be added. Alert a message saying `Queue is overflowing`
+- `length` it will return the length of the queue (Getter/Setter)
+
+YOU CAN ADD OTHER PROPERTIES IF YOU NEED.
+
+Methods:
+
+- `enqueue` Add the element to the queue
+- `dequeue` Removes an element from the queue
+- `peek` returns the first element from the top of the queue
+- `printAll` print all the elements of the queue from one after another from the top
+- `isEmpty` Returns `true` if the queue is empty
+
+```js
+class Queue {
+  // your code goes here
+  constructor(capacity = Infinity) {
+    this.capacity = capacity;
+    this.storage = [];
+    this.length = 0;
+  }
+
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  isOverflowing() {
+    return this.length >= this.capacity;
+  }
+
+  enqueue(ele) {
+    if (this.isOverflowing()) {
+      alert("Queue is overflowing");
+    } else {
+      this.storage.push(ele);
+      this.length = this.storage.length;
+      return this.length;
+    }
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      let removedEle = this.storage.splice(0, 1);
+      this.length = this.storage.length;
+      return removedEle;
+    }
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      return this.storage[0];
+    }
+  }
+  printAll() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      this.storage.forEach((elm) => {
+        console.log(elm);
+      });
+    }
+  }
+}
+
+// Test 1
+
+const queue = new Queue();
+
+queue.enqueue(10);
+queue.enqueue(12);
+queue.enqueue(120);
+queue.enqueue(1);
+queue.enqueue(4);
+
+console.log(queue.dequeue()); // => 10
+console.log(queue.length); // => 4
+console.log(queue.dequeue()); // => 12
+console.log(queue.length); // => 3
+
+console.log(queue.peek()); // 120
+
+console.log(queue.isEmpty()); // false
+
+console.log(queue.dequeue()); // => 120
+
+console.log(queue.peek()); // => 1
+
+console.log(queue.dequeue()); // => 1
+console.log(queue.dequeue()); // => 4
+
+console.log(queue.isEmpty()); // true
+
+// Test 2
+
+const queue2 = new Queue(4);
+
+queue2.enqueue(10);
+queue2.enqueue(12);
+queue2.enqueue(120);
+queue2.enqueue(1);
+queue2.enqueue(4); // alert Queue is overflowing
+
+console.log(queue2.dequeue()); // => 10
+console.log(queue2.length); // => 3
+console.log(queue2.dequeue()); // => 12
+console.log(queue2.length); // => 2
+
+console.log(queue2.peek()); // 120
+
+console.log(queue2.isEmpty()); // false
+
+console.log(queue2.dequeue()); // => 120
+
+console.log(queue2.peek()); // => 1
+
+console.log(queue2.dequeue()); // => 1
+
+console.log(queue2.isEmpty()); // true
+```
+
+### Implement Queue using Object to Store Data
+
+Create a class named `Queue` with the following properties and methods:
+
+- **While implementing this you can only use an Object to store data.**
+- While implementing this you can use Array to store data and use any array methods.
+
+Properties:
+
+- `storage` use it to store the data for the queue. It should be an object
+- `capacity` defaults to `Infinity` if the length is above capacity the item can't be added. Alert a message saying `Queue is overflowing`
+- `length` it will return the length of the queue (Getter/Setter)
+
+YOU CAN ADD OTHER PROPERTIES IF YOU NEED.
+
+Methods:
+
+- `enqueue` Returns true if the queue is empty
+- `dequeue` Removes an element from the queue
+- `peek` returns the first element from the top of the queue
+- `printAll` print all the elements of the queue from one after another from the top
+- `isEmpty` Returns `true` if the queue is empty
+
+```js
+class Queue {
+  // your code goes here
+}
+
+// Test 1
+
+const queue = new Queue();
+
+queue.enqueue(10);
+queue.enqueue(12);
+queue.enqueue(120);
+queue.enqueue(1);
+queue.enqueue(4);
+
+console.log(queue.dequeue()); // => 10
+console.log(queue.length); // => 4
+console.log(queue.dequeue()); // => 12
+console.log(queue.length); // => 3
+
+console.log(queue.peek()); // 120
+
+console.log(queue.isEmpty()); // false
+
+console.log(queue.dequeue()); // => 120
+
+console.log(queue.peek()); // => 1
+
+console.log(queue.dequeue()); // => 1
+console.log(queue.dequeue()); // => 4
+
+console.log(queue.isEmpty()); // true
+
+// Test 2
+
+const queue2 = new Queue(4);
+
+queue2.enqueue(10);
+queue2.enqueue(12);
+queue2.enqueue(120);
+queue2.enqueue(1);
+queue2.enqueue(4); // alert Queue is overflowing
+
+console.log(queue2.dequeue()); // => 10
+console.log(queue2.length); // => 3
+console.log(queue2.dequeue()); // => 12
+console.log(queue2.length); // => 2
+
+console.log(queue2.peek()); // 120
+
+console.log(queue2.isEmpty()); // false
+
+console.log(queue2.dequeue()); // => 120
+
+console.log(queue2.peek()); // => 1
+
+console.log(queue2.dequeue()); // => 1
+
+console.log(queue2.isEmpty()); // true
+```
