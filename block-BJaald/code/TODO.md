@@ -9,7 +9,7 @@
 Create a class named `Queue` with the following properties and methods:
 
 - While implementing this you can use Array to store data and use any array methods.
-- Test the `Stack` class using `Test 1` and `Test 2` given below
+- Test the `Queue` class using `Test 1` and `Test 2` given below
 
 The class `Queue` will accept one optional parameter `capacity` using which we can limit the data size. The value of `capacity` will default to `Infinity`.
 
@@ -32,6 +32,56 @@ Methods:
 ```js
 class Queue {
   // your code goes here
+  constructor(capacity = Infinity) {
+    this.capacity = capacity;
+    this.storage = [];
+    this.length = 0;
+  }
+
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  isOverflowing() {
+    return this.length >= this.capacity;
+  }
+
+  enqueue(ele) {
+    if (this.isOverflowing()) {
+      alert("Queue is overflowing");
+    } else {
+      this.storage.push(ele);
+      this.length = this.storage.length;
+      return this.length;
+    }
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      let removedEle = this.storage.splice(0, 1);
+      this.length = this.storage.length;
+      return removedEle;
+    }
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      return this.storage[0];
+    }
+  }
+  printAll() {
+    if (this.isEmpty()) {
+      alert("Queue is empty");
+    } else {
+      this.storage.forEach((elm) => {
+        console.log(elm);
+      });
+    }
+  }
 }
 
 // Test 1
